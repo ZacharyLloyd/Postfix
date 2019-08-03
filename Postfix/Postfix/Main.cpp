@@ -34,19 +34,69 @@ void main() {
 				}
 				break;
 			case '-':
-				// Please implement
+				if (vStack.size() >= 2) {
+					operand1 = vStack.back();
+					vStack.pop_back();
+					operand2 = vStack.back();
+					vStack.pop_back();
+					vStack.push_back(operand2 - operand1);
+				}
+				else {
+					cout << "Invalid Postfix Expression at:  - \n";
+					pfValid = false;
+				}
 				break;
 			case '*':
-				// Please implement
+				if (vStack.size() >= 2) {
+					operand1 = vStack.back();
+					vStack.pop_back();
+					operand2 = vStack.back();
+					vStack.pop_back();
+					vStack.push_back(operand2 * operand1);
+				}
+				else {
+					cout << "Invalid Postfix Expression at:  * \n";
+					pfValid = false;
+				}
 				break;
 			case '/':
-				// Please implement
+				if (vStack.size() >= 2) {
+					operand1 = vStack.back();
+					vStack.pop_back();
+					operand2 = vStack.back();
+					vStack.pop_back();
+					vStack.push_back(operand2 / operand1);
+				}
+				else {
+					cout << "Invalid Postfix Expression at:  / \n";
+					pfValid = false;
+				}
 				break;
 			case '%':
-				// Please implement
+				if (vStack.size() >= 2) {
+					operand1 = vStack.back();
+					vStack.pop_back();
+					operand2 = vStack.back();
+					vStack.pop_back();
+					vStack.push_back(operand2 % operand1);
+				}
+				else {
+					cout << "Invalid Postfix Expression at:  % \n";
+					pfValid = false;
+				}
 				break;
 			case '^':
-				// Please implement
+				if (vStack.size() >= 2) {
+					operand1 = vStack.back();
+					vStack.pop_back();
+					operand2 = vStack.back();
+					vStack.pop_back();
+					vStack.push_back(operand2 ^ operand1);
+				}
+				else {
+					cout << "Invalid Postfix Expression at:  ^ \n";
+					pfValid = false;
+				}
 				break;
 			default:
 				if (all_of(tokens[i].begin(), tokens[i].end(), isdigit)) {
