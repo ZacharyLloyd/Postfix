@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include<math.h>
 using namespace std;
 void main() {
 	vector<int> vStack;
@@ -9,6 +10,7 @@ void main() {
 	int operand1, operand2;
 	string inputExp = "";
 	bool pfValid = true;
+	//An interface with what the application can do
 	cout << "*** Welcome to Postfix Calculation ***\n";
 	cout << "*   This program only works on integer values\n";
 	cout << "*   and accept + - * / % ^ as operators.\n";
@@ -20,6 +22,7 @@ void main() {
 		// Evaluate each token
 		for (unsigned int i = 0; i < tokens.size() && pfValid == true; i++) {
 			switch (tokens[i][0]) {
+			//If the operator is for addition
 			case '+':
 				if (vStack.size() >= 2) {
 					operand1 = vStack.back();
@@ -33,6 +36,7 @@ void main() {
 					pfValid = false;
 				}
 				break;
+			//If the operator is for subtraction
 			case '-':
 				if (vStack.size() >= 2) {
 					operand1 = vStack.back();
@@ -46,6 +50,7 @@ void main() {
 					pfValid = false;
 				}
 				break;
+			//If the operator is for multiplication
 			case '*':
 				if (vStack.size() >= 2) {
 					operand1 = vStack.back();
@@ -59,19 +64,22 @@ void main() {
 					pfValid = false;
 				}
 				break;
+			//If the operator is for division
 			case '/':
 				if (vStack.size() >= 2) {
 					operand1 = vStack.back();
 					vStack.pop_back();
 					operand2 = vStack.back();
 					vStack.pop_back();
-					vStack.push_back(operand2 / operand1);
+					//Taking the bigger value out of the input given
+					vStack.push_back(max(operand1, operand2) / min(operand1, operand2));
 				}
 				else {
 					cout << "Invalid Postfix Expression at:  / \n";
 					pfValid = false;
 				}
 				break;
+			//If the operator needs to get the remainder of the input given
 			case '%':
 				if (vStack.size() >= 2) {
 					operand1 = vStack.back();
@@ -85,13 +93,14 @@ void main() {
 					pfValid = false;
 				}
 				break;
+			//If the operator needs to multiple by the power of the input given
 			case '^':
 				if (vStack.size() >= 2) {
 					operand1 = vStack.back();
 					vStack.pop_back();
 					operand2 = vStack.back();
 					vStack.pop_back();
-					vStack.push_back(operand2 ^ operand1);
+					vStack.push_back(pow(operand2, operand1));
 				}
 				else {
 					cout << "Invalid Postfix Expression at:  ^ \n";
